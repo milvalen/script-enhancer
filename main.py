@@ -2,6 +2,8 @@ import os
 import openai
 
 openai.api_key = ''
+GENERATED_FOLDER = 'generated'
+SCRIPTS_FOLDER = 'scripts'
 
 
 def load_scripts_from_folder(folder_path):
@@ -33,15 +35,11 @@ def save_generated_script(filename, content, output_folder):
         file.write(content)
 
 
-def main(scripts_folder, generated_folder):
-    if not os.path.exists(generated_folder):
-        os.makedirs(generated_folder)
-
-    for filename, script_content in load_scripts_from_folder(scripts_folder).items():
-        new_script_content = get_completion(generate_prompt(script_content))
-        save_generated_script(filename, new_script_content, generated_folder)
-        print(f'The {filename} script has been updated and saved in {generated_folder}.')
-
-
 if __name__ == '__main__':
-    main('scripts', 'generated')
+    if not os.path.exists(GENERATED_FOLDER):
+        os.makedirs(GENERATED_FOLDER)
+
+    for filename, script_content in load_scripts_from_folder(SCRIPTS_FOLDER).items():
+        new_script_content = get_completion(generate_prompt(script_content))
+        save_generated_script(filename, new_script_content, GENERATED_FOLDER)
+        print(f'The {filename} script has been updated and saved in {GENERATED_FOLDER}.')
