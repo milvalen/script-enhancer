@@ -16,7 +16,7 @@ def load_scripts_from_folder(folder_path):
 
 
 def generate_prompt(script_content):
-    return f'Поменяй стиль следующего кода и верни только код:\n\n{script_content}\n\n'
+    return f'Change the style of the following code and return only the code:\n\n{script_content}\n\n'
 
 
 def get_completion(prompt):
@@ -32,7 +32,7 @@ def save_generated_script(filename, content, output_folder):
     with open(os.path.join(output_folder, filename), 'w', encoding='utf-8') as file:
         file.write(content)
 
-# TODO: save only code
+
 def main(scripts_folder, generated_folder):
     if not os.path.exists(scripts_folder):
         os.makedirs(scripts_folder)
@@ -43,7 +43,7 @@ def main(scripts_folder, generated_folder):
     for filename, script_content in load_scripts_from_folder(scripts_folder).items():
         new_script_content = get_completion(generate_prompt(script_content))
         save_generated_script(filename, new_script_content, generated_folder)
-        print(f"Скрипт {filename} дополнен и сохранен в {generated_folder}.")
+        print(f'The {filename} script has been updated and saved in {generated_folder}.')
 
 
 if __name__ == '__main__':
