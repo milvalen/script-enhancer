@@ -1,0 +1,4 @@
+/.vscode
+/generated
+scripts/*
+.DS_Store

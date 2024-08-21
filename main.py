@@ -34,9 +34,6 @@ def save_generated_script(filename, content, output_folder):
 
 
 def main(scripts_folder, generated_folder):
-    if not os.path.exists(scripts_folder):
-        os.makedirs(scripts_folder)
-
     if not os.path.exists(generated_folder):
         os.makedirs(generated_folder)
 
